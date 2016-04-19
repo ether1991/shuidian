@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pdsu.edu.domain.User">
+	
+	<resultMap type="com.pdsu.edu.domain.HireNum" id="hirenumResult">
+		<result property="roomid" column="roomid" javaType="java.lang.String" />
+		<result property="peoplename" column="peoplename" />
+		<result property="waternum" column="waternum" />
+		<result property="elecnum" column="elecnum" />
+		<result property="space" column="space" />
+	</resultMap>
+		
+<!-- 	<select id="getLines" resultType="int">
+		select count(*) from hirenum    
+	</select> -->
+	
+	<select id="hiregetLines" resultType="int">
+		select count(*) from hirenum    
+	</select>
+	
+    <!-- 添加新的用户 -->
+	<insert id="HireUseradd" parameterType="hirenum">
+		insert into hirenum(roomid,peoplename,waternum,elecnum,space) values(#{roomid},#{peoplename},#{waternum},#{elecnum},#{space})    
+	</insert>
+	
+	<!-- 查看所有用户信息 -->
+	<select id="HireNumselectAll" resultMap="hirenumResult" parameterType="page">
+		select * from hirenum 
+ 	</select>
+ 	
+ 	<!-- 查看所有用户信息 -->
+	<select id="HireNumgetAll" resultMap="hirenumResult">
+		select * from hirenum 
+ 	</select>
+ 	
+ 	<select id="HireUserselectByRoomId" resultType="hirenum">
+	    select * from hirenum where roomid=#{roomid}
+	</select>
+	
+	<!-- 修改房间号和对应住户之间的关系 -->
+	<update id="HireNumupdate" parameterType="hirenum">
+		update hirenum set peoplename=#{peoplename},waternum=#{waternum},elecnum=#{elecnum},space=#{space} where roomid=#{roomid}
+ 	</update>
+ 	
+ 	<!-- 删除某用户 -->
+ 	<delete id="deleteHireUser" parameterType="String">
+ 	    delete from hirenum where roomid=#{roomid}
+ 	</delete>
+
+</mapper>

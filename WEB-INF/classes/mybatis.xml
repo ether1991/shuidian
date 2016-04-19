@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="user" type="com.pdsu.edu.domain.User"/>
+		<typeAlias alias="price" type="com.pdsu.edu.domain.Price"/>
+		<typeAlias alias="familynum" type="com.pdsu.edu.domain.FamilyNum"/>
+ 		<typeAlias alias="page" type="com.pdsu.edu.domain.Page"/> 
+ 		<typeAlias alias="familyfee" type="com.pdsu.edu.domain.FamilyFee"/>
+  		<typeAlias alias="inputdata" type="com.pdsu.edu.domain.InputData"/>
+  		<typeAlias alias="hirenum" type="com.pdsu.edu.domain.HireNum"/>
+  		<typeAlias alias="hireprice" type="com.pdsu.edu.domain.HirePrice"/>
+        <typeAlias alias="hirefee" type="com.pdsu.edu.domain.HireFee"/>
+        <typeAlias alias="officeprice" type="com.pdsu.edu.domain.OfficePrice"/>
+        <typeAlias alias="freespace" type="com.pdsu.edu.domain.FreeSpace"/>
+        <typeAlias alias="officenum" type="com.pdsu.edu.domain.OfficeNum"/>
+        <typeAlias alias="officefee" type="com.pdsu.edu.domain.OfficeFee"/>
+        <typeAlias alias="reminder" type="com.pdsu.edu.domain.Reminder"/>
+        <typeAlias alias="teamfee" type="com.pdsu.edu.domain.TeamFee"/>
+        <typeAlias alias="datebound" type="com.pdsu.edu.domain.DateBound"/>
+	</typeAliases>
+	<mappers>
+		<mapper resource="com/pdsu/edu/domain/sqlMappers/user.xml" />
+		<mapper resource="com/pdsu/edu/domain/sqlMappers/price.xml" />
+		<mapper resource="com/pdsu/edu/domain/sqlMappers/familynum.xml"/>
+		<mapper resource="com/pdsu/edu/domain/sqlMappers/familyfee.xml"/>
+		<mapper resource="com/pdsu/edu/domain/sqlMappers/hirenum.xml"/>
+		<mapper resource="com/pdsu/edu/domain/sqlMappers/hireprice.xml"/>
+		<mapper resource="com/pdsu/edu/domain/sqlMappers/hirefee.xml"/>
+		<mapper resource="com/pdsu/edu/domain/sqlMappers/officeprice.xml"/>
+		<mapper resource="com/pdsu/edu/domain/sqlMappers/freespace.xml"/>
+		<mapper resource="com/pdsu/edu/domain/sqlMappers/officenum.xml"/>
+		<mapper resource="com/pdsu/edu/domain/sqlMappers/officefee.xml"/>
+		<mapper resource="com/pdsu/edu/domain/sqlMappers/reminder.xml"/>
+		<mapper resource="com/pdsu/edu/domain/sqlMappers/teamfee.xml"/>
+	</mappers>
+</configuration>	

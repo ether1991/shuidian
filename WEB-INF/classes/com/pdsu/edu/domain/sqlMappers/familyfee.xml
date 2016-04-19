@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pdsu.edu.domain.FamilyFee">
+
+	<resultMap type="familyfee" id="familyfeeResult">
+		<result property="roomid" column="roomid" javaType="java.lang.String" />
+		<result property="waternum" column="waternum" />
+		<result property="wateruse" column="wateruse" />
+		<result property="waterfee" column="waterfee" />
+		<result property="elecnum" column="elecnum" />
+		<result property="elecuse" column="elecuse" />
+		<result property="elecfee" column="elecfee" />
+		<result property="cleanfee" column="cleanfee" />
+		<result property="date" column="date" />
+		<result property="beizhu" column="beizhu"/>
+	</resultMap>
+<!-- 
+	<select id="familyfeeSelectByIdAndDate" parameterType="inputdata" resultType="familyfee">
+	    select * from familyfee where roomid=#{roomid} and date=#{date}
+	</select>  -->
+	
+	<!-- 获得总记录数 -->
+	<select id="familyfeeGetLines" parameterType="java.util.Date" resultType="int">
+		select count(*) from familyfee where date=#{date}
+	</select>
+	<!-- 添加新的记录 -->
+	<insert id="familyfeeadd" parameterType="familyfee">
+		insert into
+		familyfee(roomid,waternum,wateruse,waterfee,elecnum,elecuse,elecfee,cleanfee,allfee,date,beizhu)
+		values(#{roomid},#{waternum},#{wateruse},#{waterfee},#{elecnum},#{elecuse},#{elecfee},#{cleanfee},#{allfee},#{date},#{beizhu})
+	</insert>
+	<!-- 根據月份查詢 -->
+	<select id="familyfeeSelectByDate" resultMap="familyfeeResult"
+		parameterType="java.util.Date">
+		select * from familyfee where date=#{date}
+	</select>
+	<!-- 根据房间号码查询近期条记录 -->
+	<select id="familyfeeSelectByRoomId" resultType="familyfee">
+		select * from familyfee where roomid=#{roomid}
+	</select>
+	
+	<select id="familyfeeGetAll" resultType="familyfee">
+	    select * from familyfee
+	</select>
+	
+	<select id="familyfeeSelectBound" resultType="familyfee" parameterType="datebound">
+	    select * from familyfee where date between #{datebound.start} and #{datebound.end}
+	</select>
+	
+<!-- 
+	这两种操作，还需要考虑需不需要，目前不提供
+	<update id="FamilyNumFeeupdate" parameterType="familynum">
+		update familynumfee set
+		peoplename=#{peoplename},waternum=#{waternum},elecnum=#{elecnum} where
+		roomid=#{roomid}
+	</update>
+-->
+	<delete id="familyfeeDeleteById" parameterType="int">
+		delete from familyfee where id=#{id}
+	</delete> 
+
+</mapper>

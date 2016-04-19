@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pdsu.edu.domain.OfficeNum">
+
+	<!-- <resultMap type="com.pdsu.edu.domain.OfficeNum" id="officenumResult"> 
+		<result property="roomid" column="roomid" javaType="java.lang.String" /> 
+		<result property="peoplename" column="peoplename" /> <result property="waternum" 
+		column="waternum" /> <result property="elecnum" column="elecnum" /> <result 
+		property="space" column="space" /> </resultMap> -->
+
+
+	<!-- 获得总记录数 -->
+	<select id="officefeeGetLines" parameterType="java.util.Date" resultType="int">
+		select count(*)	from officenum
+	</select>
+	
+	<select id="officenumSelectById" parameterType="int" resultType="officenum">
+	    select * from officenum where id=#{id}
+	</select>
+
+
+	 <select id="officenumgetLines" resultType="int"> 
+	     select count(*) from officenum 
+	 </select>
+
+	<!-- 添加新的用户 -->
+	<insert id="officenumAdd" parameterType="officenum">
+		insert into
+		officenum(roomid,teamname,rank1,rank2,rank3,rank4,rank5,allpeoplenum,spaceuse,allspaceuse,waternum,elecnum,freespace,morespace)
+		values(#{roomid},#{teamname},#{rank1},#{rank2},#{rank3},#{rank4},#{rank5},#{allpeoplenum},#{spaceuse},#{allspaceuse},#{waternum},#{elecnum},#{freespace},#{morespace})
+	</insert>
+
+	<!-- 查看所有用户信息 -->
+	<select id="officenumselectAll" resultType="officenum">
+		select * from officenum order by roomid
+	</select>
+
+	<!-- 修改房间号和对应住户之间的关系 -->
+	<update id="officenumUpdate" parameterType="officenum">
+		update officenum set
+		teamname=#{teamname},rank1=#{rank1},rank2=#{rank2},rank3=#{rank3},rank4=#{rank4},rank5=#{rank5},allpeoplenum=#{allpeoplenum},spaceuse=#{spaceuse},allspaceuse=#{allspaceuse},waternum=#{waternum},elecnum=#{elecnum},freespace=#{freespace},morespace=#{morespace}
+		where roomid=#{roomid}
+	</update>
+
+	<!-- 删除某用户 -->
+	<delete id="officenumDeleteId" parameterType="int">
+		delete from officenum where id=#{id}
+	</delete>
+
+	<select id="officenumSelectByroomid" parameterType="String" resultType="officenum">
+	    select * from officenum where roomid=#{roomid}
+	</select>
+	
+	
+	<select id="officenumSelectByTeamname" parameterType="String" resultType="officenum">
+	    select * from officenum where teamname=#{teamname}
+	</select>
+</mapper>

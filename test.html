@@ -1,0 +1,32 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml;charset=UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>测试屏幕旋转</title> 
+<script language="javascript" type="text/javascript">
+var orientation=0;
+function screenOrientationEvent(){
+if(orientation == 0)document.getElementByIdx_x("change").value="竖";
+else document.getElementByIdx_x("change").value="横";
+}
+var innerWidthTmp = windows.innerWidth;
+function screenOrientationListener(){
+try{
+var iw = windows.innerWidth;
+if(iw != innerWidthTmp){
+if(iw>windows.innerHeight)orientation = 90;
+else orientation = 0;
+screenOrientationEvent();
+innerWidthTmp = iw;
+}
+} catch(e){alert(e);};
+setTimeout("screenOrientationListener()",500);
+}
+screenOrientationListener();
+</script>
+</head> 
+<body onload="screenOrientationEvent()"> 
+<input id="change" type="text" value=""/>
+</body>
+</html>

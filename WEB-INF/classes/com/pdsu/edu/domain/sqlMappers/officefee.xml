@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pdsu.edu.domain.OfficeFee">
+
+	<!-- <resultMap type="officefee" id="officefeeResult"> <result property="id" 
+		column="id"/> <result property="roomid" column="roomid" javaType="java.lang.String" 
+		/> <result property="teamname" column="teamname"/> <result property="wateruse" 
+		column="wateruse" /> <result property="waterfee" column="waterfee" /> <result 
+		property="elecuse" column="elecuse" /> <result property="elecfee" column="elecfee" 
+		/> <result property="spaceuse" column="spaceuse"/> <result property="spacefee" 
+		column="spacefee" /> <result property="allteamfee" column="allteamfee"/> 
+		<result property="date" column="date" /> </resultMap> -->
+	<!-- <select id="familyfeeSelectByIdAndDate" parameterType="inputdata" resultType="familyfee"> 
+		select * from familyfee where roomid=#{roomid} and date=#{date} </select> -->
+
+	<!-- 获得总记录数 -->
+	<!-- <select id="familyfeeGetLines" parameterType="java.util.Date" resultType="int"> 
+		select count(*) from familyfee where date=#{date} </select> -->
+
+	<!-- 添加新的记录 -->
+	<insert id="officefeeadd" parameterType="officefee">
+		insert into
+		officefee(roomid,teamname,wateruse,waterfee,elecuse,elecfee,spaceuse,spacefee,allteamfee,date,beizhu)
+		values(#{roomid},#{teamname},#{wateruse},#{waterfee},#{elecuse},#{elecfee},#{spaceuse},#{spacefee},#{allteamfee},#{date},#{beizhu})
+	</insert>
+
+
+	<select id="officefeeselectById" parameterType="int" resultType="officefee">
+		select * from officefee where id=#{id}
+	</select>
+
+
+	<select id="officefeeSelectAll" resultType="officefee">
+	    select * from officefee
+	</select>
+	
+	<select id="officefeeselectall" resultType="officefee">
+		select * from officefee
+	</select>
+
+	<!-- 根據月份查詢 -->
+	<select id="officefeeselectbydate" resultType="officefee"
+		parameterType="java.util.Date">
+		select * from officefee where date=#{date}
+	</select>
+	<!-- 根据房间号码查询近期条记录 -->
+	<select id="officefeeselectbyroomid" resultType="officefee"
+		parameterType="java.lang.String">
+		select * from officefee where roomid=#{roomid}
+	</select>
+	
+	<select id="officefeeSelectByTeamname" parameterType="java.lang.String" resultType="officefee">
+	    select * from officefee where teamname=#{teamname}
+	</select>
+
+	<delete id="officefeeDeleteById" parameterType="int">
+		delete from	officefee where id=#{id}
+	</delete>
+
+	<update id="officefeeUpdate" parameterType="officefee">
+		update officefee set
+		roomid=#{roomid},wateruse=#{wateruse},waterfee=#{waterfee},elecuse=#{elecuse},elecfee=#{elecfee},spaceuse=#{spaceuse},spacefee=#{spacefee},allteamfee=#{allteamfee},date=#{date},beizhu=#{beizhu}
+		where teamname=#{teamname}
+	</update>
+</mapper>

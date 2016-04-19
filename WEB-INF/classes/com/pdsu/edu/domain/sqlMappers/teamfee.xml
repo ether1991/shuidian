@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pdsu.edu.domain.TeamFee">
+
+    <select id="teamfeeSelectAll" resultType="teamfee">
+        select * from teamfee
+    </select>
+    
+    <update id="teamfeeUpdate" parameterType="teamfee">
+        update teamfee set waterfee=#{waterfee},elecfee=#{elecfee},roomfee=#{roomfee} where teamname=#{teamfee} and date=#{date}
+    </update>
+    
+    <insert id="teamfeeInsert" parameterType="teamfee">
+        insert into teamfee(teamname,waterfee,elecfee,roomfee,date) values(#{teamname},#{waterfee},#{elecfee},#{roomfee},#{date})
+    </insert>
+    
+</mapper>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>	
+	 <constant name="struts.i18n.encoding" value="UTF-8"/>
+	 		<!-- 指定默认编码集 ，作用于HttpServletRequest的setCharacterEncoding（）和freemarker，vilocity的输出 -->
+	<constant name="struts.configuration.xmlreload" value="true"/>
+			<!-- 当struts配置文件修改时是否自动加载 -->
+	<constant name="struts.devMode" value="true"/>
+			<!-- 开发模式下打印详细的错误信息 -->
+	<constant name="struts.ui.theme" value="xhtml"/>
+
+		<package name="user" namespace="/" extends="struts-default">
+		<action name="user_*" class="com.pdsu.edu.action.UserAction" method="{1}">
+			<!-- <result name="success"  type="redirectAction">reminder_findexceedtime</result> -->
+			<result name="success">/admin_login_success.jsp</result>
+			<result name="register_success">/index.jsp</result>
+			<result name="input">/index.jsp</result>
+			<result name="success_ordinary">/login_success.jsp</result>
+			<!-- <result name="success_ordinary" type="redirectAction">reminder_findexceedtime1</result> -->
+			<result name="userList">/userList.jsp</result>
+			<result name="addUser" >/userAdd.jsp</result>
+			<result name="updateUser">/userUpdate.jsp</result>
+			<result name="logout">/index.jsp</result>
+		</action>
+		
+		<action name="reminder_*" class="com.pdsu.edu.action.ReminderAction" method="{1}">
+		    <result name="findexceedtime">/admin_login_success.jsp</result>
+		  <!--   <result name="findexceedtime1">/login_success.jsp</result> -->
+		</action>
+		<action name="price_*" class="com.pdsu.edu.action.PriceAction" method="{1}">
+		    <result name="updatePrice">/admin_login_success.jsp</result>
+		    <result name="price">/manage_unitprice.jsp</result>
+		    <result name="showtable">/input.jsp</result>
+		    <result name="managefamilynum">/managefamilynum.jsp</result>
+		</action>
+		
+		<action name="familynum_*" class="com.pdsu.edu.action.FamilyNumAction" method="{1}">
+		    <result name="addFamilyUser" type="redirectAction">familynum_FamilyNumselectALl</result>
+		    <result name="FamilyNumselectALl">/familynumList.jsp</result>
+		    <result name="updatefamilynum"  type="redirectAction">familynum_FamilyNumselectALl</result>
+		    <result name="deleteFamilyUser" type="redirectAction">familynum_FamilyNumselectALl</result>
+		    <result name="toFamilyUseradd">/admin_addFamilyNumUser.jsp</result>
+		    <result name="tofamilnumupdate">/admin_updatefamilynum.jsp</result>
+		    <result name="input">/admin_updatefamilynum.jsp</result>
+		    <result name="toinputData">/inputData.jsp</result>
+		</action>
+		
+		<action name="inputdata_*" class="com.pdsu.edu.action.InputDataAction" method="{1}">
+		    <result name="showDownPage">/inputData.jsp</result>
+		    <result name="input">/inputData.jsp</result>
+		    <result name="tomodifypage">/inputData.jsp</result>
+		    <result name="hireshowDownPage">/hireInputData.jsp</result>
+		    <result name="tohiremodifypage">/hireInputData.jsp</result>
+		    <result name="toofficemodifypage">/officeInputData.jsp</result>
+		    <result name="officeshowDownPage">/officeInputData.jsp</result>
+		    <result name="backinput">/officeInputData.jsp</result>
+		</action>
+		
+		<action name="familyfee_*" class="com.pdsu.edu.action.FamilyFeeAction" method="{1}">
+		    <result name="familyfeeinsertsuccess">/1.jsp</result>
+		    <result name="familyfeeList">/familyfeeList.jsp</result>
+		    <result name="familyfeeListByRoomId">/familyfeeListByRoomId.jsp</result>
+		    <result name="toquerydata">/querydata.jsp</result>
+		    <result name="familyfeeAllList">/familyfeeAllList.jsp</result>
+		    <result name="selectbound">/familyfeeSelectBoundList.jsp</result>
+		</action>
+		
+		<action name="hirenum_*" class="com.pdsu.edu.action.HireNumAction" method="{1}">
+		    <result name="tohirenumlist">/hirenumList.jsp</result>
+		    <result name="tohirenumselectall" type="redirectAction">hirenum_HireNumselectAll</result>
+		    <result name="toHireNumadd">/admin_addHireNumUser.jsp</result>
+		    <result name="tohirenumupdate">/admin_updatehirenum.jsp</result>
+		    <result name="tohireinputdata">/hireInputData.jsp</result>
+		</action>
+		
+		<action name="hireprice_*" class="com.pdsu.edu.action.HirePriceAction" method="{1}">
+			<result name="input">/manage_hireprice.jsp</result>	
+			<result name="success">/manage_hireprice.jsp</result>	
+			<result name="updatesuccess">/admin_login_success.jsp</result>	    
+		</action>
+		
+		<action name="hirefee_*" class="com.pdsu.edu.action.HireFeeAction" method="{1}">
+		    <result name="tohirequerypage">/hirequerydata.jsp</result>
+		    <result name="showList">/hirefeeList1.jsp</result>
+		    <result name="hirefeeAllList">/hirefeeAllList.jsp</result>
+		</action>
+		
+		<action name="officeprice_*" class="com.pdsu.edu.action.OfficePriceAction" method="{1}">
+		    <result name="success">/manage_officeprice.jsp</result>
+		    <result name="input">/manage_officeprice.jsp</result>
+		    <result name="updatesuccess">/admin_login_success.jsp</result>	 
+		</action>
+		
+		<action name="freespace_*" class="com.pdsu.edu.action.FreeSpaceAction" method="{1}">
+		    <result name="getfreespace">/manage_freespace.jsp</result>
+		    <result name="updatefreespacesuccess">/admin_login_success.jsp</result>
+		</action>
+		
+		<action name="officenum_*" class="com.pdsu.edu.action.OfficeNumAction" method="{1}">
+		    <result name="officenumselectAll">/officenumList.jsp</result>
+		    <result name="querysuccess">/officenumqueryresult.jsp</result>
+		    <result name="toofficenumaddpage">/admin_addOfficeNumUser.jsp</result>
+		    <result name="officenumAdd" type="redirectAction">/officenum_officenumselectAll</result>
+		    <result name="input">/admin_addOfficeNumUser.jsp</result>
+		    <result name="toofficenumquery">/officequerydata.jsp</result>
+		    <result name="toofficenumUpdate">/admin_updateofficenum.jsp</result>
+		    <result name="deletesuccess" type="redirectAction">officenum_officenumselectAll</result>
+		    <result name="updatesuccess" type="redirectAction">officenum_officenumselectAll</result>
+		    <result name="toofficeinputdata">/officeInputData.jsp</result>
+		    <result name="toiniputfreespace">/officenuminputfreespace.jsp</result>
+		    <result name="inputfreespacesuccess">/officenuminputfreespace.jsp</result>
+		</action>
+		
+		<action name="officefee_*" class="com.pdsu.edu.action.OfficeFeeAction" method="{1}">
+		    <result name="toofficefeequerydata">/officefeequerydata.jsp</result>
+		    <result name="querysuccess">/officefeeList.jsp</result>
+		    <result name="querysuccess1">/officefeeList1.jsp</result>
+		    <result name="showteamfeeList">/teamfeeList.jsp</result>
+		    <result name="officefeeAllList">/officefeeAllList.jsp</result>
+		</action>
+		
+		
+	</package>
+</struts>    

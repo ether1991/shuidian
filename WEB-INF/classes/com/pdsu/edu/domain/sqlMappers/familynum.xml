@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pdsu.edu.domain.FamilyNum">
+	
+	<resultMap type="familynum" id="familynumResult">
+		<result property="roomid" column="roomid" javaType="java.lang.String" />
+		<result property="peoplename" column="peoplename"/>
+		<result property="waternum" column="waternum" />
+		<result property="elecnum" column="elecnum" />
+	</resultMap>
+	
+	<select id="getLines" resultType="int">
+		select count(*) from familynum    
+	</select>
+	
+    <!-- 添加新的用户 -->
+	<insert id="FamilyUseradd" parameterType="familynum">
+		insert into familynum(roomid,peoplename,waternum,elecnum) values(#{roomid},#{peoplename},#{waternum},#{elecnum})    
+	</insert>
+	
+	<!-- 查看所有用户信息 -->
+	<select id="FamilyNumselectALl" resultMap="familynumResult" parameterType="page">
+		select * from familynum 
+ 	</select>
+ 	
+ 	<select id="FamilyNumGetALl" resultMap="familynumResult">
+		select * from familynum 
+ 	</select>
+ 	
+	<select id="FamilyUserselectByRoomId" resultType="familynum">
+	    select * from familynum where roomid=#{roomid}
+	</select>
+	
+	<!-- 修改房间号和对应住户之间的关系 -->
+	<update id="FamilyNumupdate" parameterType="familynum">
+		update familynum set peoplename=#{peoplename},waternum=#{waternum},elecnum=#{elecnum} where roomid=#{roomid}
+ 	</update>
+ 	
+ 	<!-- 删除某用户 -->
+ 	<delete id="deleteFamilyUser" parameterType="String">
+ 	    delete from familynum where roomid=#{roomid}
+ 	</delete>
+
+</mapper>

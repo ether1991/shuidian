@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pdsu.edu.domain.HireFee">
+
+	<resultMap type="hirefee" id="hirefeeResult">
+	    <result property="id" column="id"/>
+		<result property="roomid" column="roomid" javaType="java.lang.String" />
+		<result property="waternum" column="waternum" />
+		<result property="wateruse" column="wateruse" />
+		<result property="waterfee" column="waterfee" />
+		<result property="elecnum" column="elecnum" />
+		<result property="elecuse" column="elecuse" />
+		<result property="elecfee" column="elecfee" />
+		<result property="roomfee" column="roomfee"/>
+		<result property="cleanfee" column="cleanfee" />
+		<result property="allfee" column="allfee"/>
+		<result property="date" column="date" />
+		<result property="beizhu" column="beizhu" />
+	</resultMap>
+<!-- 
+	<select id="familyfeeSelectByIdAndDate" parameterType="inputdata" resultType="familyfee">
+	    select * from familyfee where roomid=#{roomid} and date=#{date}
+	</select>  -->
+	
+	<!-- 获得总记录数 -->
+<!-- 	<select id="familyfeeGetLines" parameterType="java.util.Date" resultType="int">
+		select count(*)
+		from familyfee where date=#{date}
+	</select> -->
+	<!-- 添加新的记录 -->
+	<insert id="hirefeeadd" parameterType="hirefee">
+		insert into
+		hirefee(roomid,waternum,wateruse,waterfee,elecnum,elecuse,elecfee,roomfee,cleanfee,allfee,date,beizhu)
+		values(#{roomid},#{waternum},#{wateruse},#{waterfee},#{elecnum},#{elecuse},#{elecfee},#{roomfee},#{cleanfee},#{allfee},#{date},#{beizhu})
+	</insert>
+	
+	<select id="hirefeedeleteById" parameterType="int">
+	    select * from hirefee where id=#{id}
+	</select>
+	
+	<delete id=""></delete>
+	
+	<select id="hirefeeselectall" resultType="hirefee">
+	    select * from hirefee
+	</select>
+	
+<!-- 	<update id="hirefeeupdate">
+	   
+	</update> -->
+	
+	<!-- 根據月份查詢 -->
+	<select id="hirefeeselectbydate" resultMap="hirefeeResult"
+		parameterType="java.util.Date">
+		select * from hirefee where date=#{date}
+	</select>
+	<!-- 根据房间号码查询近期条记录 -->
+	<select id="hirefeeselectbyroomid" resultType="hirefee" parameterType="java.lang.String">
+		select * from hirefee where roomid=#{roomid}
+	</select>
+	
+	<select id="hirefeeSelectAll" resultType="hirefee">
+	    select * from hirefee
+	</select>
+	
+<!-- 
+	这两种操作，还需要考虑需不需要，目前不提供
+	<update id="FamilyNumFeeupdate" parameterType="familynum">
+		update familynumfee set
+		peoplename=#{peoplename},waternum=#{waternum},elecnum=#{elecnum} where
+		roomid=#{roomid}
+	</update>
+-->
+	
+	<delete id="hirefeeDeleteById" parameterType="int">
+		delete from hirefee where id=#{id}
+	</delete> 
+
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pdsu.edu.domain.FreeSpace">
+	<resultMap type="com.pdsu.edu.domain.FreeSpace" id="freespaceResult">
+		<result property="id" column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+		<result property="rank1" column="rank1" />
+		<result property="rank2" column="rank2" />
+		<result property="rank3" column="rank3" />
+		<result property="rank4" column="rank4" />
+		<result property="rank5" column="rank5" />
+	</resultMap>
+
+	<select id="selectfreespace" parameterType="int" resultMap="freespaceResult">
+		select * from freespace where id=#{id}
+ 	</select>
+
+	<update id="updatefreespace" parameterType="freespace">
+		update freespace set rank1=#{rank1},rank2=#{rank2},rank3=#{rank3},rank4=#{rank4},rank5=#{rank5} where id=#{id}
+ 	</update>
+</mapper>

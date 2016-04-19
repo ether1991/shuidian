@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pdsu.edu.domain.OfficePrice">
+	<resultMap type="com.pdsu.edu.domain.OfficePrice" id="officepriceResult">
+		<result property="id" column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+		<result property="waterprice" column="waterprice" />
+		<result property="elecprice" column="elecprice" />
+		<result property="roomprice" column="roomprice"/>
+		<result property="exceedroomprice" column="exceedroomprice"/>
+	</resultMap>
+
+	<select id="selectOfficePrice" parameterType="int" resultMap="officepriceResult">
+		select * from officeprice where id=#{id}
+ 	</select>
+
+	<update id="updateOfficePrice" parameterType="officeprice">
+		update officeprice set waterprice=#{waterprice},elecprice=#{elecprice},roomprice=#{roomprice},exceedroomprice=#{exceedroomprice} where id=#{id}
+ 	</update>
+</mapper>
